@@ -46,7 +46,67 @@ y_pred = regresor.predict(x_test)
 # %%
 # Build optimal moedl using backwars elimination
 import statsmodels.formula.api as sm
+from statsmodels.regression.linear_model import OLS
 
 # We need to add one column of ones for the b0*x0 value
- x = np.append(arr=np.ones(x.shape()[0], 1).astype(int), values=x, axis=1)
+x = np.append(arr=np.ones((x.shape[0], 1)).astype(int), values=x, axis=1)
+
+# x opt are the optimal variables. Variables that have only high impact
+x_opt = x[:, [0, 1, 2, 3, 4, 5]]
+x_opt = x_opt.astype(float)
  
+regresor_ols = OLS(endog=y, exog=x_opt).fit()
+
+regresor_ols.summary()
+
+# P>|t|
+# x2 = 0.990 (we have to remove it)
+
+# %%
+from statsmodels.regression.linear_model import OLS
+# x opt are the optimal variables. Variables that have only high impact
+x_opt = x[:, [0, 1, 3, 4, 5]]
+x_opt = x_opt.astype(float)
+ 
+regresor_ols = OLS(endog=y, exog=x_opt).fit()
+
+regresor_ols.summary()
+# %%
+from statsmodels.regression.linear_model import OLS
+# x opt are the optimal variables. Variables that have only high impact
+x_opt = x[:, [0, 1, 3, 4, 5]]
+x_opt = x_opt.astype(float)
+ 
+regresor_ols = OLS(endog=y, exog=x_opt).fit()
+
+regresor_ols.summary()
+
+# %%
+from statsmodels.regression.linear_model import OLS
+# x opt are the optimal variables. Variables that have only high impact
+x_opt = x[:, [0, 3, 4, 5]]
+x_opt = x_opt.astype(float)
+ 
+regresor_ols = OLS(endog=y, exog=x_opt).fit()
+
+regresor_ols.summary()
+
+# %%
+from statsmodels.regression.linear_model import OLS
+# x opt are the optimal variables. Variables that have only high impact
+x_opt = x[:, [0, 3, 5]]
+x_opt = x_opt.astype(float)
+ 
+regresor_ols = OLS(endog=y, exog=x_opt).fit()
+
+regresor_ols.summary()
+
+# %%
+from statsmodels.regression.linear_model import OLS
+# x opt are the optimal variables. Variables that have only high impact
+x_opt = x[:, [0, 3]]
+x_opt = x_opt.astype(float)
+ 
+regresor_ols = OLS(endog=y, exog=x_opt).fit()
+
+regresor_ols.summary()
