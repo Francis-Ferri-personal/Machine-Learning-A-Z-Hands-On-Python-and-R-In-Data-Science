@@ -25,16 +25,16 @@ regressor.predict([[6.5]])
 # %% Visualizing the polynomial regression results  
 # NOTE: just plotting the values of the data will show us a very good plot, but it is a trap
 # probably we weill not notice the starirs patterns. Use the code for plotting many predictions instead
-plt.scatter(x, y, color='red')
+# plt.scatter(x, y, color='red')
 # plt.plot(x, y_pred_poly)
-plt.plot(x, regressor.predict(x), color='blue')
-plt.title("Regression model (Decision Tree Regression)")
-plt.xlabel("Position level")
-plt.ylabel("Salary")
-plt.show()
+# plt.plot(x, regressor.predict(x), color='blue')
+# plt.title("Regression model (Decision Tree Regression)")
+# plt.xlabel("Position level")
+# plt.ylabel("Salary")
+# plt.show()
 
 # %% Visualizing the regression results  
-x_grid = np.arange(x[0], x[-1], 0.1)
+x_grid = np.arange(x[0], x[-1], 0.01)
 x_grid = np.reshape(x_grid, (len(x_grid), 1))
 plt.scatter(x, y, color='red')
 # plt.plot(x, y_pred_poly)
