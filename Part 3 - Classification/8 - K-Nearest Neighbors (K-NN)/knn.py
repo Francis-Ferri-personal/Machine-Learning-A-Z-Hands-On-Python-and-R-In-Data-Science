@@ -1,4 +1,4 @@
-# Classification template
+# K_Nearest Neighbors (K-NN)
 
 # Data preprocessing
 
@@ -26,7 +26,9 @@ x_train = standard_scaler_x.transform(x_train)
 x_test = standard_scaler_x.transform(x_test)
 
 # Fitting the classifier to the training set
-# Create our classifier here
+from sklearn.neighbors import KNeighborsClassifier
+classifier = KNeighborsClassifier(n_neighbors=5, metric='minkowski', p=2)
+classifier.fit(x_train, y_train)
 
 # Predicting the test set results
 y_pred = classifier.predict(x_test)
@@ -46,7 +48,7 @@ plt.xlim(x1.min(), x1.max())
 plt.ylim(x2.min(), x2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(x_set[y_set == j, 0], x_set[y_set == j, 1], c = ListedColormap(('red', 'green'))(i), label = j)
-plt.title('Logistic Regression (Training set)')
+plt.title('K-NN (Training set)')
 plt.xlabel('Age')
 plt.ylabel('Estimated Salary')
 plt.legend()
@@ -55,7 +57,7 @@ plt.show()
 # Visualizing the Test set results
 from matplotlib.colors import ListedColormap
 x_set, y_set = standard_scaler_x.inverse_transform(x_test), y_test
-x1, x2 = np.meshgrid(np.arange(start = x_set[:, 0].min() - 10, stop = x_set[:, 0].max() + 10, step = 5),
+x1, x2 = np.meshgrid(np.arange(start = x_set[:, 0].min() - 10, stop = x_set[:, 0].max() + 10, step =5),
                      np.arange(start = x_set[:, 1].min() - 1000, stop = x_set[:, 1].max() + 1000, step = 5))
 plt.contourf(x1, x2, classifier.predict(standard_scaler_x.transform(np.array([x1.ravel(), x2.ravel()]).T)).reshape(x1.shape),
              alpha = 0.75, cmap = ListedColormap(('red', 'green')))
@@ -63,7 +65,7 @@ plt.xlim(x1.min(), x1.max())
 plt.ylim(x2.min(), x2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(x_set[y_set == j, 0], x_set[y_set == j, 1], c = ListedColormap(('red', 'green'))(i), label = j)
-plt.title('Logistic Regression (Testing set)')
+plt.title('K-NN(Testing set)')
 plt.xlabel('Age')
 plt.ylabel('Estimated Salary')
 plt.legend()
