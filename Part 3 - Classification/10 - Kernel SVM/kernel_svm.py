@@ -1,4 +1,4 @@
-# Classification template
+# Kernel SVM
 
 # Data preprocessing
 
@@ -26,7 +26,9 @@ x_train = standard_scaler_x.transform(x_train)
 x_test = standard_scaler_x.transform(x_test)
 
 # Fitting the classifier to the training set
-# Create our classifier here
+from sklearn.svm import SVC
+classifier = SVC(kernel='rbf', random_state=0) # gamma is important to get better results
+classifier.fit(x_train, y_train)
 
 # Predicting the test set results
 y_pred = classifier.predict(x_test)
@@ -46,7 +48,7 @@ plt.xlim(x1.min(), x1.max())
 plt.ylim(x2.min(), x2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(x_set[y_set == j, 0], x_set[y_set == j, 1], c = ListedColormap(('red', 'green'))(i), label = j)
-plt.title('Classifier (Training set)')
+plt.title('Kernel SVM (Training set)')
 plt.xlabel('Age')
 plt.ylabel('Estimated Salary')
 plt.legend()
@@ -63,7 +65,7 @@ plt.xlim(x1.min(), x1.max())
 plt.ylim(x2.min(), x2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(x_set[y_set == j, 0], x_set[y_set == j, 1], c = ListedColormap(('red', 'green'))(i), label = j)
-plt.title('Classifier (Testing set)')
+plt.title('Kernel SVM (Testing set)')
 plt.xlabel('Age')
 plt.ylabel('Estimated Salary')
 plt.legend()
