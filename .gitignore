@@ -2,3 +2,5 @@ Machine Learning A-Z (Codes and Datasets)
 .RData
 .Rhistory
 datasets
+**/__pycache__
+__pycache__
