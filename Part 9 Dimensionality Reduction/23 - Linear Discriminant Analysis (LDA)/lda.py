@@ -1,5 +1,4 @@
-# PCA
-
+# LCA
 
 #%% Importing the libraries
 import numpy as np
@@ -24,18 +23,14 @@ standard_scaler_x.fit(x)
 x_train = standard_scaler_x.transform(x_train)
 x_test = standard_scaler_x.transform(x_test)
 
-# %% Applying PCA
-from sklearn.decomposition import PCA
-# pca = PCA(n_components = None) # We do not set a specific value to see the results for all the possible n components
-# [0.36722576, 0.19231879, 0.10830194, 0.07414597, 0.06288414, 0.05059778, 0.0419487 , 0.02518069, 0.02222384, 0.01858596, 0.01712304, 0.01277985, 0.00668354}
+# %% Applying LDA
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
 
-pca = PCA(n_components = 2) 
-x_train = pca.fit_transform(x_train)
-x_test = pca.transform(x_test)
+lda = LDA(n_components=2)
+x_train = lda.fit_transform(x_train, y_train)
+x_test = lda.transform(x_test)
 
-explained_variance = pca.explained_variance_ratio_
-
-# %% Fitting Logistc Regression to the training set
+# %% Fitting Logistic Regression to the training set
 from sklearn.linear_model import LogisticRegression
 classifier = LogisticRegression(random_state=0)
 classifier.fit(x_train, y_train)
@@ -59,8 +54,8 @@ plt.ylim(x2.min(), x2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(x_set[y_set == j, 0], x_set[y_set == j, 1], c = ListedColormap(('red', 'green', 'blue'))(i), label = j)
 plt.title('Logistic Regression (Training set)')
-plt.xlabel('PC1')
-plt.ylabel('PC2')
+plt.xlabel('LD1')
+plt.ylabel('LD2')
 plt.legend()
 plt.show()
 
@@ -76,7 +71,7 @@ plt.ylim(x2.min(), x2.max())
 for i, j in enumerate(np.unique(y_set)):
     plt.scatter(x_set[y_set == j, 0], x_set[y_set == j, 1], c = ListedColormap(('red', 'green', 'blue'))(i), label = j)
 plt.title('Logistic Regression (Testing set)')
-plt.xlabel('PC1')
-plt.ylabel('PC2')
+plt.xlabel('LD1')
+plt.ylabel('LD2')
 plt.legend()
 plt.show()
